@@ -11,12 +11,18 @@ import { allProducts } from '../reducers';
 
 
 class ContentHome extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: []
+        }
+    }
 
-	componentDidMount() {
-        this.props.onGetProd();
-  		}
+        componentDidMount() {
+            this.props.onGetProd();
+        }
 
-	  componentWillReceiveProps(nextProps){
+	  componentWillReceiveProps(nextProps) {
           const { products } = this.props;
           let qwerty = products.filter(function(el) {
               const searchQuery = nextProps.match.params.id;
