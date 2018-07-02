@@ -1,21 +1,55 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+
+
+
+import NamesComponent from './NamesComponent/NamesComponent.jsx';
+import ContentComponent from './ContentComponent/ContentComponent.jsx';
+import ListComponent from './ListComponent/ListComponent.jsx';
+
+
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+class App extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            products : []
+        }
+
+    }
+
+    render() {
+        return (
+            <Router>
+                <Grid>
+                    <Row className="show-grid">
+                        <Col xs={3} md={3}>
+                            <NamesComponent />
+                        </Col>
+                        <Col xs={9} md={9}>
+                            <Switch>
+                                <Route path="/:id" component={ContentComponent} />
+                                <Route path="/" component={ListComponent} />
+                            </Switch>
+                        </Col>
+                    </Row>
+                </Grid>
+            </Router>
+        );
+    }
 }
 
+
+
 export default App;
+
+
